@@ -29,11 +29,56 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= form_tag '/transaction/', :remote => true, :method => "post", :class => "form-group transaction-form" do %>
+          <h5>Type:</h5>
+          <div class="row mx-0" id="type-selection">
+            <%= radio_button_tag(:type, "income", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "type_income"%>>Income</label>
+            <%= radio_button_tag(:type, "spending", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "type_spending"%>>Spending</label>
+            <%= radio_button_tag(:type, "transfer", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "type_transfer"%>>Transfer</label>
+          </div>
+          <h5 class="mt-2">Amount:</h5>
+          <div class="row mx-0">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+              </div>
+              <%= text_field_tag 'amount', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
+            </div>
+          </div>
+          <span class="d-none income-form">
+            <div class="row mx-0" id="type-selection">
+              <%= radio_button_tag(:category, "checking", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "category_checking"%>>Checking</label>
+              <%= radio_button_tag(:category, "cash", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "category_cash"%>>Cash</label>
+            </div>
+          </span>
+          <h5 class="mt-2">Description:</h5>
+          <div class="row mx-0">
+            <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
+          </div>
+          <h5 class="mt-2">Date:</h5>
+          <div class="row mx-0">
+            <input type="text" autocomplete="off" name="played_at" class='datepicker' id="played_at" placeholder="Pick a date">
+            <script type="text/javascript">
+              $(document).ready(function(){
+                $('.datepicker').datepicker({
+                  startView: 2,
+                  maxViewMode: 2,
+                  todayBtn: "linked",
+                  autoclose: true,
+                  endDate: "0d"
+              });
+              });
+            </script>
+          </div>
+          
+          <span class="d-none" id="spending-form">
+            
+          </span>
+          <div class="row mx-0 mt-2">
+            <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

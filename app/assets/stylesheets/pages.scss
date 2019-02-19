@@ -1,3 +1,20 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pill-link {
+	border-radius: 15px;
+	background-color: #e0e0e0;
+	cursor: pointer;
+}
+
+.transaction-form {
+	#type-selection > input[type="radio"] {
+		display: none;
+	}
+
+	input:checked + label {
+		color: white;
+		background-color: #ea377a;
+	}
+}

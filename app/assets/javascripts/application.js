@@ -15,5 +15,17 @@
 //= require activestorage
 //= require turbolinks
 //= require popper
+//= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require_tree .
+$(document).on('turbolinks:load', function() {
+	$("#type_income").on("click", function(){
+		$(".income-form").removeClass("d-none");
+		$(".spending-form").addClass("d-none");
+	});
+
+	$("#type_spending").on("click", function(){
+		$(".income-form").addClass("d-none");
+		$(".spending-form").removeClass("d-none");
+	});
+});

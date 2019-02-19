@@ -12,6 +12,7 @@ gem 'bootstrap',	'4.1.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', 	'~> 5'
 gem 'jbuilder', 	'~> 2.5'
+gem 'bootstrap-datepicker-rails'
 gem 'bootsnap', 	'>= 1.1.0', require: false
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'jquery-rails',   '4.3.1'

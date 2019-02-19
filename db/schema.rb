@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_11_214845) do
+ActiveRecord::Schema.define(version: 2019_02_03_220434) do
 
   create_table "transactions", force: :cascade do |t|
-    t.string "type"
     t.string "desc"
     t.decimal "amount"
     t.date "date"
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "input_type"
   end
 
 end
