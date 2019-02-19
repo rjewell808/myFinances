@@ -28,4 +28,15 @@ $(document).on('turbolinks:load', function() {
 		$(".income-form").addClass("d-none");
 		$(".spending-form").removeClass("d-none");
 	});
+
+	$("#category").on("change", function(){
+		$(".sub_category").addClass("d-none");
+		let x;
+		for (x = 0; x < $(".sub_category").length; x++) {
+			$(".sub_category")[x].name = "";
+		}
+		$(".sub_category").name = "";
+		$("#sub_category_" + $('#category')[0].value).removeClass("d-none");
+		$("#sub_category_" + $('#category')[0].value)[0].name = "sub_category";
+	});
 });

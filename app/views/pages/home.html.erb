@@ -1,2 +1,22 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="row mx-3">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Source</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse.each do |trans| %>
+      <tr>
+        <th scope="row"><%=trans.amount_type%></th>
+        <td><%=trans.desc%></td>
+        <td>$<%=trans.amount%></td>
+        <td><%=trans.date%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
