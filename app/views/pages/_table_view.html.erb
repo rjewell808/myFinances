@@ -1,5 +1,8 @@
-<div class="row mx-3">
-  <table class="table table-striped">
+<%
+  all_trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
+%>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Type</th>
@@ -9,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse.each do |trans| %>
+    <% all_trans.each do |trans| %>
       <tr>
         <th scope="row"><%=trans.amount_type%></th>
         <td><%=trans.desc%></td>
@@ -19,4 +22,3 @@
     <% end %>
   </tbody>
 </table>
-</div>

@@ -1,0 +1,31 @@
+<div class="row mx-0">
+  <div class="col-auto mr-3">
+    <div class="row">
+      <h1 class="mb-0">$<%= @cash_total + @check_total %></h1>
+    </div>
+    <div class="row">
+      Total
+    </div>
+  </div>
+  <div class="col-auto mx-2 mt-auto">
+    <div class="row">
+      <h3 class="mb-0">$<%= @check_total %></h3>
+    </div>
+    <div class="row">
+      Checking
+    </div>
+  </div>
+  <div class="col-auto ml-2 mt-auto">
+    <div class="row">
+      <h3 class="mb-0">$<%= @cash_total %></h3>
+    </div>
+    <div class="row">
+      Cash
+    </div>
+  </div>
+</div>
+<div class="row mx-0 mt-3">
+  <div class="col-6" id="trans_table">
+    <%= render partial: "table_view" %>
+  </div>
+</div>

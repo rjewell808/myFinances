@@ -9,9 +9,25 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">myFinances</a>
-      <button class="ml-auto btn btn-outline-success" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Income</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/spending/">Spending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Transfers</a>
+          </li>
+        </ul>
+        <button class="ml-auto btn btn-outline-success" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
+      </div>
     </nav>
     <div class="container-fluid">
       <%= yield %>
@@ -116,7 +132,7 @@
           </span>
           </span>
           <div class="row mx-0 mt-2">
-            <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="commit" class="btn btn-primary submit-trans">Submit</button>
             <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
           </div>
         <% end %>
