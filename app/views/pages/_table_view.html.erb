@@ -16,7 +16,7 @@
       <tr>
         <th scope="row"><%=trans.amount_type%></th>
         <td><%=trans.desc%></td>
-        <td>$<%=trans.amount%></td>
+        <td>$<%=sprintf('%.2f', trans.amount)%></td>
         <td><%=trans.date%></td>
       </tr>
     <% end %>

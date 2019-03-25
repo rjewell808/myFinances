@@ -20,8 +20,12 @@
 //= require_tree .
 $(document).on('turbolinks:load', function() {
 	$("#type_income").on("click", function(){
-		$(".income-form").removeClass("d-none");
-		$(".spending-form").addClass("d-none");
+		
+	});
+
+	$("#type-selection a").click(function(){
+		console.log(this.id);
+		$("#" + this.id)[0].checked = true;
 	});
 
 	$("#type_spending").on("click", function(){

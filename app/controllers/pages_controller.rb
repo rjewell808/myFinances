@@ -29,6 +29,24 @@ class PagesController < ApplicationController
   def spending
   end
 
+  def render_income
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def render_spending
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def render_transfer
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def transaction
   	amount = params[:amount].to_f
   	amount_type = "checking"

@@ -47,93 +47,15 @@
       <div class="modal-body">
         <%= form_tag '/transaction/', :remote => true, :method => "post", :class => "form-group transaction-form" do %>
           <div class="row">
-            <div class="col-auto">
-              <h5>Type:</h5>
-              <div class="row mx-0" id="type-selection">
-                <%= radio_button_tag(:type, "income", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "type_income"%>>Income</label>
-                <%= radio_button_tag(:type, "spending", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "type_spending"%>>Spending</label>
-                <%= radio_button_tag(:type, "transfer", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "type_transfer"%>>Transfer</label>
-              </div>
-            </div>
             <div class="col">
-              <h5 class="mt-2">Date:</h5>
-              <div class="row mx-0">
-                <input type="text" autocomplete="off" name="played_at" class='datepicker form-control' id="played_at" placeholder="Pick a date">
-                <script type="text/javascript">
-                  $(document).ready(function(){
-                    $('.datepicker').datepicker({
-                      startView: 2,
-                      maxViewMode: 2,
-                      todayBtn: "linked",
-                      autoclose: true,
-                      endDate: "0d"
-                  });
-                  });
-                </script>
+              <div class="row w-100 mx-0" id="type-selection">
+                <%= radio_button_tag(:type, "income", false) %> <%= link_to "Income", render_income_path, remote: true, class: 'pill-link py-1 px-2 ml-auto m-1', id: 'type_income' %>
+                <%= radio_button_tag(:type, "spending", true) %> <%= link_to "Spending", render_spending_path, remote: true, class: 'pill-link py-1 px-2 m-1', id: 'type_spending' %>
+                <%= radio_button_tag(:type, "transfer", false) %> <%= link_to "Transfer", render_transfer_path, remote: true, class: 'pill-link py-1 px-2 mr-auto m-1', id: 'type_transfer' %>
               </div>
             </div>
-          </div>
-          <h5 class="mt-2">Amount:</h5>
-          <div class="row mx-0">
-            <div class="col-2 my-auto px-0 d-none spending-form">
-              Checking
-            </div>
-            <div class="col my-auto px-0">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">$</div>
-                </div>
-                <%= text_field_tag 'amount', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
-              </div>
-            </div>
-          </div>
-          <span class="d-none spending-form">
-            <div class="row mt-1 mx-0">
-              <div class="col-2 my-auto px-0">
-                Cash
-              </div>
-              <div class="col my-auto px-0">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">$</div>
-                  </div>
-                  <%= text_field_tag 'amount_cash', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
-                </div>
-              </div>
-            </div>
-          </span>
-          <span class="d-none income-form">
-            <div class="row mx-0" id="type-selection">
-              <%= radio_button_tag(:amount_type, "checking", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "amount_type_checking"%>>Checking</label>
-              <%= radio_button_tag(:amount_type, "cash", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "amount_type_cash"%>>Cash</label>
-            </div>
-          </span>
-          <h5 class="mt-2">Description:</h5>
-          <div class="row mx-0">
-            <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
-          </div>
-          <span class="d-none spending-form">
-            <h5 class="mt-2">Category:</h5>
-            <div class="form-group">
-              <select class="form-control" name="category" id="category">
-                <% @categories.each do |k ,v| %>
-                  <option><%=k%></option>
-                <% end %>
-              </select>
-              <% @categories.each do |k ,v| %>
-                <select class="form-control d-none mt-2 sub_category" id="sub_category_<%=k%>">
-                  <option>General</option>
-                  <% v.each do |subc| %>
-                    <option><%=subc%></option>
-                  <% end %>
-                </select>
-              <% end %>
-            </div>
-          </span>
-          </span>
-          <div class="row mx-0 mt-2">
-            <button type="submit" name="commit" class="btn btn-primary submit-trans">Submit</button>
-            <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+          </div>     
+          <div class="row mx-0" id="specific_form">
           </div>
         <% end %>
       </div>
