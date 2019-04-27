@@ -2,23 +2,26 @@
   all_trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
 %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Source</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% all_trans.each do |trans| %>
-      <tr>
-        <th scope="row"><%=trans.amount_type%></th>
-        <td><%=trans.desc%></td>
-        <td>$<%=sprintf('%.2f', trans.amount)%></td>
-        <td><%=trans.date%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row mx-0 headings">
+  <div class="col">Type</div>
+  <div class="col">Source</div>
+  <div class="col">Amount</div>
+  <div class="col">Date</div>
+</div>
+<% all_trans.each do |trans| %>
+  <%
+    theme = ""
+
+    if trans.amount_type == "checking"
+      theme = "checking-theme"
+    elsif trans.amount_type == "cash"
+      theme = "cash-theme"
+    end
+  %>
+  <div class="row mx-0 <%=theme%> transaction">
+      <div class="col"><%=trans.amount_type%></div>
+      <div class="col"><%=trans.desc%></div>
+      <div class="col">$<%=sprintf('%.2f', trans.amount)%></div>
+      <div class="col"><%=trans.date.strftime("%m/%d/%Y")%></div>
+  </div>
+<% end %>

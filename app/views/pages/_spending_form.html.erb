@@ -1,0 +1,87 @@
+<%
+  @categories = {
+      "Automotive"=>[],
+      "Food"=>["Break Food", "Grocery", "Movies", "Restaurant"],
+      "Gifts"=>["Birthday", "Christmas"],
+      "Hobbies"=>["Lego"],
+      "Movies"=>["Theaters", "Rental", "Bluray"],
+      "PC_Gaming"=>["Games", "Systems", "Parts"],
+      "Phone"=>[],
+      "School"=>[],
+      "Other"=>[]
+    }
+%>
+<div class="col-12 my-auto px-0">
+	<h5 class="mt-2">Amount:</h5>
+  <div class="row mt-1 mx-0">
+    <div class="col-2 my-auto px-0">
+      Checking
+    </div>
+    <div class="col my-auto px-0">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <%= text_field_tag 'amount', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12 px-0">
+  <div class="row mt-1 mx-0">
+    <div class="col-2 my-auto px-0">
+      Cash
+    </div>
+    <div class="col my-auto px-0">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <%= text_field_tag 'amount_cash', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12 px-0">
+	<h5 class="mt-2">Description:</h5>
+  <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
+</div>
+<div class="col-12 px-0">
+	<h5 class="mt-2">Date:</h5>
+  <div class="row mx-0">
+    <input type="text" autocomplete="off" name="played_at" class='datepicker form-control' required="required" id="played_at" placeholder="Pick a date">
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.datepicker').datepicker({
+          startView: 2,
+          maxViewMode: 2,
+          todayBtn: "linked",
+          autoclose: true,
+          endDate: "0d"
+      });
+      });
+    </script>
+  </div>
+</div>
+<div class="col-12 px-0">
+  <h5 class="mt-2">Category:</h5>
+  <div class="form-group">
+    <select class="form-control" name="category" id="category">
+      <% @categories.each do |k ,v| %>
+        <option><%=k%></option>
+      <% end %>
+    </select>
+    <% @categories.each do |k ,v| %>
+      <select class="form-control d-none mt-2 sub_category" id="sub_category_<%=k%>">
+        <option>General</option>
+        <% v.each do |subc| %>
+          <option><%=subc%></option>
+        <% end %>
+      </select>
+    <% end %>
+  </div>
+</div>
+<div class="col-12 px-0 mt-2">
+  <button type="submit" name="commit" class="btn btn-primary submit-trans">Submit</button>
+  <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+</div>

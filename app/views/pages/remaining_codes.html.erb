@@ -1,0 +1,61 @@
+<div class="row mx-0">
+            <h5 class="mt-2">Amount:</h5>
+            <div class="col-2 my-auto px-0 d-none spending-form">
+              Checking
+            </div>
+            <div class="col my-auto px-0">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">$</div>
+                </div>
+                <%= text_field_tag 'amount', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
+              </div>
+            </div>
+          </div>
+          <span class="d-none spending-form">
+            <div class="row mt-1 mx-0">
+              <div class="col-2 my-auto px-0">
+                Cash
+              </div>
+              <div class="col my-auto px-0">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                  </div>
+                  <%= text_field_tag 'amount_cash', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
+                </div>
+              </div>
+            </div>
+          </span>
+          <span class="d-none income-form">
+            <div class="row mx-0" id="type-selection">
+              <%= radio_button_tag(:amount_type, "checking", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "amount_type_checking"%>>Checking</label>
+              <%= radio_button_tag(:amount_type, "cash", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "amount_type_cash"%>>Cash</label>
+            </div>
+          </span>
+          <h5 class="mt-2">Description:</h5>
+          <div class="row mx-0">
+            <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
+          </div>
+          <span class="d-none spending-form">
+            <h5 class="mt-2">Category:</h5>
+            <div class="form-group">
+              <select class="form-control" name="category" id="category">
+                <% @categories.each do |k ,v| %>
+                  <option><%=k%></option>
+                <% end %>
+              </select>
+              <% @categories.each do |k ,v| %>
+                <select class="form-control d-none mt-2 sub_category" id="sub_category_<%=k%>">
+                  <option>General</option>
+                  <% v.each do |subc| %>
+                    <option><%=subc%></option>
+                  <% end %>
+                </select>
+              <% end %>
+            </div>
+          </span>
+          <div class="row mx-0 mt-2">
+            <button type="submit" name="commit" class="btn btn-primary submit-trans">Submit</button>
+            <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+          </div>

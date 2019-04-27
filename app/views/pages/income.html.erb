@@ -1,7 +1,7 @@
-<div class="row mx-0">
+<div class="row mt-2 mx-0">
   <div class="col-auto mr-3">
     <div class="row">
-      <h1 class="mb-0">$<%= @cash_total + @check_total %></h1>
+      <h1 class="mb-0">$<%= '%.2f' % (@cash_total + @check_total) %></h1>
     </div>
     <div class="row">
       Total
@@ -9,7 +9,7 @@
   </div>
   <div class="col-auto mx-2 mt-auto">
     <div class="row">
-      <h3 class="mb-0">$<%= @check_total %></h3>
+      <h3 class="mb-0">$<%= '%.2f' % @check_total %></h3>
     </div>
     <div class="row">
       Checking
@@ -17,13 +17,14 @@
   </div>
   <div class="col-auto ml-2 mt-auto">
     <div class="row">
-      <h3 class="mb-0">$<%= @cash_total %></h3>
+      <h3 class="mb-0">$<%= '%.2f' % @cash_total %></h3>
     </div>
     <div class="row">
       Cash
     </div>
   </div>
 </div>
+<hr>
 <div class="row mx-0 mt-3">
   <div class="col-6" id="trans_table">
     <%= render partial: "table_view" %>

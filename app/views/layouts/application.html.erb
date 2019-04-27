@@ -49,9 +49,9 @@
           <div class="row">
             <div class="col">
               <div class="row w-100 mx-0" id="type-selection">
-                <%= radio_button_tag(:type, "income", false) %> <%= link_to "Income", render_income_path, remote: true, class: 'pill-link py-1 px-2 ml-auto m-1', id: 'type_income' %>
-                <%= radio_button_tag(:type, "spending", true) %> <%= link_to "Spending", render_spending_path, remote: true, class: 'pill-link py-1 px-2 m-1', id: 'type_spending' %>
-                <%= radio_button_tag(:type, "transfer", false) %> <%= link_to "Transfer", render_transfer_path, remote: true, class: 'pill-link py-1 px-2 mr-auto m-1', id: 'type_transfer' %>
+                <%= radio_button_tag(:type, "income", false) %> <%= link_to "Income", render_income_path, remote: true, class: 'pill-link income px-2 ml-auto m-1', id: 'type_income' %>
+                <%= radio_button_tag(:type, "spending", true) %> <%= link_to "Spending", render_spending_path, remote: true, class: 'pill-link spending px-2 m-1', id: 'type_spending' %>
+                <%= radio_button_tag(:type, "transfer", false) %> <%= link_to "Transfer", render_transfer_path, remote: true, class: 'pill-link transfer px-2 mr-auto m-1', id: 'type_transfer' %>
               </div>
             </div>
           </div>     

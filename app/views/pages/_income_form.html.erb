@@ -7,7 +7,7 @@
     <%= text_field_tag 'amount', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
   </div>
 </div>
-<div class="col-12 px-0" id="type-selection">
+<div class="col-12 mt-1 px-0" id="type-selection">
   <%= radio_button_tag(:amount_type, "checking", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "amount_type_checking"%>>Checking</label>
   <%= radio_button_tag(:amount_type, "cash", false) %><label class="pill-link py-1 px-2 m-1" for=<%= "amount_type_cash"%>>Cash</label>
 </div>
@@ -18,18 +18,19 @@
 <div class="col-12 px-0">
 	<h5 class="mt-2">Date:</h5>
   <div class="row mx-0">
-    <input type="text" autocomplete="off" name="played_at" class='datepicker form-control' required="required" id="played_at" placeholder="Pick a date">
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('.datepicker').datepicker({
-          startView: 2,
-          maxViewMode: 2,
-          todayBtn: "linked",
-          autoclose: true,
-          endDate: "0d"
-      });
-      });
-    </script>
+      <input type="text" autocomplete="off" name="played_at" class='datepicker form-control' required="required" id="played_at" placeholder="Pick a date">
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('.datepicker').datepicker({
+            startView: 2,
+            maxViewMode: 2,
+            todayBtn: "linked",
+            autoclose: true,
+            endDate: "0d"
+        });
+        });
+      </script>
+  </div>
 </div>
 <div class="col-12 px-0 mt-2">
   <button type="submit" name="commit" class="btn btn-primary submit-trans">Submit</button>

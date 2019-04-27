@@ -1,11 +1,73 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+:root {
+    --checking:#ffd49c;
+    --cash:#a6ef90;
+    --income:#53d18d;
+    --spending:#d15391;
+    --transfer:#e2b152;
+}
+
+.checking-theme {
+	background-color: var(--checking);
+}
+
+.cash-theme {
+	background-color: var(--cash);
+}
 
 .pill-link {
 	border-radius: 15px;
-	background-color: #e0e0e0;
+	background-color: transparent;
 	cursor: pointer;
+	font-weight: 500;
+	border-width: 2px;
+	border-style: solid;
+}
+
+.pill-link:hover {
+	text-decoration: none;
+}
+
+.pill-link.income {
+	border-color: var(--income);
+	color: var(--income);
+}
+
+.pill-link.income:hover {
+	background-color: var(--income);
+	color: white;
+}
+
+.pill-link.spending {
+	border-color: var(--spending);
+	color: var(--spending);
+}
+
+.pill-link.spending:hover {
+	background-color: var(--spending);
+	color: white;
+}
+
+.pill-link.transfer {
+	border-color: var(--transfer);
+	color: var(--transfer);
+}
+
+.pill-link.transfer:hover {
+	background-color: var(--transfer);
+	color: white;
+}
+
+.headings {
+	font-weight: 500;
+}
+
+.transaction {
+	border-bottom: 1px solid #5f5f5f21;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .transaction-form {
