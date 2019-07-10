@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.3'
+ruby '2.5.5'
 
 gem 'rails', 		'~> 5.2.0'
 gem 'sqlite3'
@@ -16,6 +16,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootsnap', 	'>= 1.1.0', require: false
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'jquery-rails',   '4.3.1'
+gem 'pg', '1.1.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -28,7 +29,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
+  
 end
 
 group :test do
