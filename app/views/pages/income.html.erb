@@ -1,7 +1,7 @@
 <div class="row mt-2 mx-0">
   <div class="col-auto mr-3">
     <div class="row">
-      <h1 class="mb-0">$<%= '%.2f' % (@cash_total + @check_total) %></h1>
+      <h1 class="mb-0">$<%= number_with_precision((@cash_total + @check_total), :precision => 2, :delimiter => ',') %></h1>
     </div>
     <div class="row">
       Total
@@ -9,7 +9,7 @@
   </div>
   <div class="col-auto mx-2 mt-auto">
     <div class="row">
-      <h3 class="mb-0">$<%= '%.2f' % @check_total %></h3>
+      <h3 class="mb-0">$<%= number_with_precision((@check_total), :precision => 2, :delimiter => ',') %></h3>
     </div>
     <div class="row">
       Checking
@@ -17,7 +17,7 @@
   </div>
   <div class="col-auto ml-2 mt-auto">
     <div class="row">
-      <h3 class="mb-0">$<%= '%.2f' % @cash_total %></h3>
+      <h3 class="mb-0">$<%= number_with_precision((@cash_total), :precision => 2, :delimiter => ',') %></h3>
     </div>
     <div class="row">
       Cash
