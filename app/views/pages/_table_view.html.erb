@@ -1,27 +1,59 @@
-<%
-  all_trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
-%>
-
-<div class="row mx-0 headings">
-  <div class="col">Type</div>
-  <div class="col">Source</div>
-  <div class="col">Amount</div>
-  <div class="col">Date</div>
-</div>
-<% all_trans.each do |trans| %>
+<% if type == "income" %>
   <%
-    theme = ""
-
-    if trans.amount_type == "checking"
-      theme = "checking-theme"
-    elsif trans.amount_type == "cash"
-      theme = "cash-theme"
-    end
+    all_trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
   %>
-  <div class="row mx-0 <%=theme%> transaction">
-      <div class="col"><%=trans.amount_type%></div>
-      <div class="col"><%=trans.desc%></div>
-      <div class="col">$<%=sprintf('%.2f', trans.amount)%></div>
-      <div class="col"><%=trans.date.strftime("%m/%d/%Y")%></div>
+
+  <div class="row mx-0 headings">
+    <div class="col">Type</div>
+    <div class="col">Source</div>
+    <div class="col">Amount</div>
+    <div class="col">Date</div>
   </div>
+  <% all_trans.each do |trans| %>
+    <%
+      theme = ""
+
+      if trans.amount_type == "checking"
+        theme = "checking-theme"
+      elsif trans.amount_type == "cash"
+        theme = "cash-theme"
+      end
+    %>
+    <div class="row mx-0 <%=theme%> transaction">
+        <div class="col"><%=trans.amount_type%></div>
+        <div class="col"><%=trans.desc%></div>
+        <div class="col">$<%=sprintf('%.2f', trans.amount)%></div>
+        <div class="col"><%=trans.date.strftime("%m/%d/%Y")%></div>
+    </div>
+  <% end %>
+<% elsif type == "spending" %>
+  <%
+    all_trans = Transaction.where(input_type: "spending").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
+  %>
+
+  <div class="row mx-0 headings">
+    <div class="col">Source</div>
+    <div class="col-1">Amount</div>
+    <div class="col-2">Type</div>
+    <div class="col-2">Date</div>
+    <div class="col-3">Category</div>
+  </div>
+  <% all_trans.each do |trans| %>
+    <%
+      theme = ""
+
+      if trans.amount_type == "checking"
+        theme = "checking-theme"
+      elsif trans.amount_type == "cash"
+        theme = "cash-theme"
+      end
+    %>
+    <div class="row mx-0 <%=theme%> transaction">
+        <div class="col"><%=trans.desc%></div>
+        <div class="col-1">$<%=sprintf('%.2f', trans.amount)%></div>
+        <div class="col-2"><%=trans.amount_type%></div>
+        <div class="col-2"><%=trans.date.strftime("%m/%d/%Y")%></div>
+        <div class="col-3"><%=trans.category%></div>
+    </div>
+  <% end %>
 <% end %>

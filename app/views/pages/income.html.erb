@@ -1,32 +1,40 @@
 <div class="row mt-2 mx-0">
   <div class="col-auto mr-3">
     <div class="row">
-      <h1 class="mb-0">$<%= number_with_precision((@cash_total + @check_total), :precision => 2, :delimiter => ',') %></h1>
+      <h1 class="mb-0">$<%= number_with_precision((@cash_total + @check_total - @spending_total), :precision => 2, :delimiter => ',') %></h1>
     </div>
     <div class="row">
-      Total
+      Grand Total
     </div>
   </div>
   <div class="col-auto mx-2 mt-auto">
     <div class="row">
-      <h3 class="mb-0">$<%= number_with_precision((@check_total), :precision => 2, :delimiter => ',') %></h3>
+      <h3 class="mb-0">$<%= number_with_precision((@check_total - @check_spent_total), :precision => 2, :delimiter => ',') %></h3>
     </div>
     <div class="row">
       Checking
     </div>
   </div>
-  <div class="col-auto ml-2 mt-auto">
+  <div class="col-auto mx-2 mt-auto">
     <div class="row">
-      <h3 class="mb-0">$<%= number_with_precision((@cash_total), :precision => 2, :delimiter => ',') %></h3>
+      <h3 class="mb-0">$<%= number_with_precision((@cash_total - @cash_spent_total), :precision => 2, :delimiter => ',') %></h3>
     </div>
     <div class="row">
       Cash
+    </div>
+  </div>
+  <div class="col-auto ml-2 mt-auto">
+    <div class="row">
+      <h3 class="mb-0">$<%= number_with_precision((@savings_total - @savings_spent_total), :precision => 2, :delimiter => ',') %></h3>
+    </div>
+    <div class="row">
+      Savings
     </div>
   </div>
 </div>
 <hr>
 <div class="row mx-0 mt-3">
   <div class="col-6" id="trans_table">
-    <%= render partial: "table_view" %>
+    <%= render partial: "table_view", locals: { type: "income" } %>
   </div>
 </div>

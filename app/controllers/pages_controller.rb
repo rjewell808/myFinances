@@ -13,20 +13,59 @@ class PagesController < ApplicationController
   	}
 
     @trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
+    spendings = Transaction.where(input_type: "spending").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
+
+
+    @spending_total = 0
+    @cash_spent_total = 0
+    @check_spent_total = 0
+    @savings_spent_total = 0
 
     @check_total = 0
-    @cash_total = 0 
+    @cash_total = 0
+    @savings_total = 0
 
     @trans.each do |t|
       if t.amount_type == "cash"
         @cash_total += t.amount
       elsif t.amount_type == "checking"
         @check_total += t.amount
+      elsif t.amount_type == "savings"
+        @savings_total += t.amount
       end
     end
+
+    spendings.each do |t|
+      if t.amount_type == "cash"
+        @cash_spent_total += t.amount
+      elsif t.amount_type == "checking"
+        @check_spent_total += t.amount
+      elsif t.amount_type == "savings"
+        @savings_spent_total += t.amount
+      end
+    end
+
+    @spending_total = @check_spent_total + @cash_spent_total + @savings_spent_total
   end
 
   def spending
+    @spending_total = 0
+    @cash_total = 0
+    @check_total = 0
+    @savings_total = 0
+    @trans = Transaction.where(input_type: "spending").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
+
+    @trans.each do |t|
+      if t.amount_type == "cash"
+        @cash_total += t.amount
+      elsif t.amount_type == "checking"
+        @check_total += t.amount
+      elsif t.amount_type == "savings"
+        @savings_total += t.amount
+      end
+    end
+
+    @spending_total = @check_total + @cash_total + @savings_total
   end
 
   def render_income
@@ -59,13 +98,20 @@ class PagesController < ApplicationController
   			amount_type = "cash"
   		end
   	end
+
+    category = params[:category]
+
+    if !params[:sub_category].blank?
+      category = params[:sub_category]
+    end
   	
   	Transaction.create(
   		input_type: params[:type].to_s,
   		desc: params[:desc].to_s,
   		amount: amount,
   		date: DateTime.strptime(params[:played_at],"%m/%d/%Y"),
-  		amount_type: amount_type
+  		amount_type: amount_type,
+      category: category
   	)
 
     respond_to do |format|

@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function() {
 		$(".spending-form").removeClass("d-none");
 	});
 
-	$("#category").on("change", function(){
+	$("body").on('change', '#category', function(){
 		$(".sub_category").addClass("d-none");
 		let x;
 		for (x = 0; x < $(".sub_category").length; x++) {

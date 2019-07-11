@@ -1,0 +1,13 @@
+<div class="row mx-0 mt-3">
+  <div class="col-6" id="trans_table">
+    <%= render partial: "table_view", locals: { type: "spending" } %>
+  </div>
+  <div class="col-6">
+    <div class="row">
+      <h1 class="mb-0">$<%= number_with_precision((@spending_total), :precision => 2, :delimiter => ',') %></h1>
+    </div>
+    <div class="row">
+      Total Spent
+    </div>
+  </div>
+</div>

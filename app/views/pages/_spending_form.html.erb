@@ -1,14 +1,16 @@
 <%
   @categories = {
-      "Automotive"=>[],
-      "Food"=>["Break Food", "Grocery", "Movies", "Restaurant"],
+      "Transportation"=>["Gas", "Bus", "Insurance"],
+      "Food"=>["Break Food", "Grocery", "Movies", "Restaurant", "Snacks"],
       "Gifts"=>["Birthday", "Christmas"],
-      "Hobbies"=>["Lego"],
+      "Hobbies"=>["Lego", "Backloggd"],
+      "Activities"=>[],
       "Movies"=>["Theaters", "Rental", "Bluray"],
       "PC_Gaming"=>["Games", "Systems", "Parts"],
-      "Phone"=>[],
+      "Phone"=>["Bill", "Accessories"],
       "School"=>[],
-      "Other"=>[]
+      "House"=>["Rent", "Furniture", "Supplies"],
+      "Other"=>["Subscription"]
     }
 %>
 <div class="col-12 my-auto px-0">
@@ -67,14 +69,14 @@
   <h5 class="mt-2">Category:</h5>
   <div class="form-group">
     <select class="form-control" name="category" id="category">
-      <% @categories.each do |k ,v| %>
+      <% @categories.sort_by {|k, v| k}.each do |k ,v| %>
         <option><%=k%></option>
       <% end %>
     </select>
     <% @categories.each do |k ,v| %>
       <select class="form-control d-none mt-2 sub_category" id="sub_category_<%=k%>">
         <option>General</option>
-        <% v.each do |subc| %>
+        <% v.sort_by {|v| v}.each do |subc| %>
           <option><%=subc%></option>
         <% end %>
       </select>
