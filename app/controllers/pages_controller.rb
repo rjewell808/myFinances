@@ -101,7 +101,10 @@ class PagesController < ApplicationController
   		if !params[:amount_cash].blank?
   			amount = params[:amount_cash]
   			amount_type = "cash"
-  		end
+  		elsif !params[:amount_savings].blank?
+        amount = params[:amount_savings]
+        amount_type = "savings"
+      end
   	end
 
     category = params[:category]

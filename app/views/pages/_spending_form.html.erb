@@ -13,6 +13,10 @@
       "Other"=>["Subscription"]
     }
 %>
+<div class="col-12 px-0">
+  <h5 class="mt-2">Description:</h5>
+  <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
+</div>
 <div class="col-12 my-auto px-0">
 	<h5 class="mt-2">Amount:</h5>
   <div class="row mt-1 mx-0">
@@ -58,10 +62,6 @@
       </div>
     </div>
   </div>
-</div>
-<div class="col-12 px-0">
-	<h5 class="mt-2">Description:</h5>
-  <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
 </div>
 <div class="col-12 px-0">
 	<h5 class="mt-2">Date:</h5>

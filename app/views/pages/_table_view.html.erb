@@ -1,44 +1,20 @@
-<% if page_type == "income" %>
-  <%
+<%
+  if page_type == "income"
     all_trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
-  %>
-
-  <div class="row mx-0 headings">
-    <div class="col-2">Type</div>
-    <div class="col">Source</div>
-    <div class="col-2">Amount</div>
-    <div class="col-2">Date</div>
-    <div class="col-2">Delete</div>
-  </div>
-  <% all_trans.each do |trans| %>
-    <%
-      theme = ""
-
-      if trans.amount_type == "checking"
-        theme = "checking-theme"
-      elsif trans.amount_type == "cash"
-        theme = "cash-theme"
-      end
-    %>
-    <div class="row mx-0 <%=theme%> transaction">
-        <div class="col-2"><%=trans.amount_type%></div>
-        <div class="col"><%=trans.desc%></div>
-        <div class="col-2">$<%=sprintf('%.2f', trans.amount)%></div>
-        <div class="col-2"><%=trans.date.strftime("%m/%d/%Y")%></div>
-        <div class="col-2"><%= button_to "Del", "/transaction/" + trans.id.to_s, method: :delete, params: { page_type: page_type }, remote: true, class: "btn-link"%></div>
-    </div>
-  <% end %>
-<% elsif page_type == "spending" %>
-  <%
+  elsif page_type == "spending" 
     all_trans = Transaction.where(input_type: "spending").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
-  %>
+  end
+%>
 
-  <div class="row mx-0 headings">
+<div class="row mx-0">
+  <div class="col">
+    <div class="row mx-0 headings">
     <div class="col">Source</div>
     <div class="col-1">Amount</div>
-    <div class="col-2">Type</div>
     <div class="col-2">Date</div>
-    <div class="col-3">Category</div>
+    <% if page_type == "spending" %>
+      <div class="col-3">Category</div>
+    <% end %>
     <div class="col-2">Delete</div>
   </div>
   <% all_trans.each do |trans| %>
@@ -49,15 +25,22 @@
         theme = "checking-theme"
       elsif trans.amount_type == "cash"
         theme = "cash-theme"
+      elsif trans.amount_type == "savings"
+        theme = "savings-theme"
       end
     %>
     <div class="row mx-0 <%=theme%> transaction">
-        <div class="col"><%=trans.desc%></div>
-        <div class="col-1">$<%=sprintf('%.2f', trans.amount)%></div>
-        <div class="col-2"><%=trans.amount_type%></div>
-        <div class="col-2"><%=trans.date.strftime("%m/%d/%Y")%></div>
-        <div class="col-3"><%=trans.category%></div>
-        <div class="col-2"><%= button_to "Del", "/transaction/" + trans.id.to_s, method: :delete, params: { page_type: page_type }, remote: true, class: "btn-link" %></div>
+        <div class="col my-auto">
+          <%=trans.desc%>
+          <div class="type-pill px-1"><%=trans.amount_type%></div>
+        </div>
+        <div class="col-1 my-auto">$<%=sprintf('%.2f', trans.amount)%></div>
+        <div class="col-2 my-auto"><%=trans.date.strftime("%m/%d/%Y")%></div>
+        <% if page_type == "spending" %>
+          <div class="col-3 my-auto"><%=trans.category%></div>
+        <% end %>
+        <div class="col-2 my-auto"><%= button_to "Del", "/transaction/" + trans.id.to_s, method: :delete, params: { page_type: page_type }, remote: true, class: "btn-link" %></div>
     </div>
   <% end %>
-<% end %>
+  </div>
+</div>

@@ -2,19 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 :root {
-    --checking:#ffd49c;
+    --checking:#ffc107;
     --cash:#a6ef90;
     --income:#53d18d;
     --spending:#d15391;
     --transfer:#e2b152;
+    --savings:#528de2;
 }
 
-.checking-theme {
+.type-pill {
+	display: inline-block;
+	border-radius: 15px;
+	border: 1px solid var(--checking);
 	background-color: var(--checking);
+	color: white;
+	font-size: 0.7rem;
+	line-height: normal;
+	padding-bottom: 1px;
 }
 
-.cash-theme {
-	background-color: var(--cash);
+.cash-theme .type-pill {
+	border-color: var(--income);
+	background-color: var(--income);
+}
+
+.savings-theme .type-pill {
+	border-color: var(--savings);
+	background-color: var(--savings);
 }
 
 .pill-link {
@@ -63,12 +77,11 @@
 
 .headings {
 	font-weight: 500;
+	font-size: 1.2rem;
 }
 
 .transaction {
 	border-bottom: 1px solid #5f5f5f21;
-    border-radius: 5px;
-    margin-bottom: 5px;
 }
 
 .transaction-form {
