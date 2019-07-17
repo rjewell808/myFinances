@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'render_spending', to: 'pages#render_spending'
   get 'render_transfer', to: 'pages#render_transfer'
   match 'transaction', to: 'pages#transaction', via: :post
+  match 'transaction/:id', to: 'pages#del_transaction', via: :delete
 end

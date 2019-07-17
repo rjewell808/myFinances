@@ -15,7 +15,6 @@ class PagesController < ApplicationController
     @trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
     spendings = Transaction.where(input_type: "spending").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
 
-
     @spending_total = 0
     @cash_spent_total = 0
     @check_spent_total = 0
@@ -84,6 +83,10 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def del_transaction
+    Transaction.destroy(params[:id])
   end
 
   def transaction
