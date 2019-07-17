@@ -8,6 +8,7 @@
     --spending:#d15391;
     --transfer:#e2b152;
     --savings:#528de2;
+    --pink:#ea377a;
 }
 
 .type-pill {
@@ -91,7 +92,22 @@
 
 	input:checked + label {
 		color: white;
-		background-color: #ea377a;
+		background-color: var(--pink);
+	}
+
+	.spending.checked {
+		color: white;
+		background-color: var(--spending);
+	}
+
+	.transfer.checked {
+		color: white;
+		background-color: var(--transfer);
+	}
+
+	.income.checked {
+		color: white;
+		background-color: var(--income);
 	}
 }
 

@@ -1,3 +1,7 @@
+<div class="col-12 px-0">
+  <h5 class="mt-2">Description:</h5>
+  <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
+</div>
 <div class="col-12 my-auto px-0">
 	<h5 class="mt-2">Amount:</h5>
   <div class="input-group">
@@ -11,10 +15,6 @@
   <%= radio_button_tag(:amount_type, "checking", false) %><label class="pill-link py-0 px-2 mr-1" for=<%= "amount_type_checking"%>>Checking</label>
   <%= radio_button_tag(:amount_type, "cash", false) %><label class="pill-link py-0 px-2 mx-1" for=<%= "amount_type_cash"%>>Cash</label>
   <%= radio_button_tag(:amount_type, "savings", false) %><label class="pill-link py-0 px-2 mx-1" for=<%= "amount_type_savings"%>>Savings</label>
-</div>
-<div class="col-12 px-0">
-	<h5 class="mt-2">Description:</h5>
-  <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>
 </div>
 <div class="col-12 px-0">
 	<h5 class="mt-2">Date:</h5>

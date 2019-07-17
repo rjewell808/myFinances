@@ -10,8 +10,8 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">myFinances</a>
-      <button class="ml-auto btn btn-outline-success" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
+      <a class="navbar-brand" href="/">myFinances</a>
+      <button class="ml-auto btn btn-outline-success d-block d-lg-none mr-2" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,12 +21,13 @@
             <a class="nav-link" href="/">Income</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/spending/">Spending</a>
+            <a class="nav-link" href="/spendings/">Spending</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Transfers</a>
+            <a class="nav-link" href="/transfers/">Transfers</a>
           </li>
         </ul>
+        <button class="ml-auto btn btn-outline-success d-none d-lg-block" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
       </div>
     </nav>
     <div class="container-fluid">
@@ -50,9 +51,9 @@
           <div class="row">
             <div class="col">
               <div class="row w-100 mx-0" id="type-selection">
-                <%= radio_button_tag(:type, "income", false) %> <%= link_to "Income", render_income_path, remote: true, class: 'pill-link income px-2 ml-auto m-1', id: 'type_income' %>
-                <%= radio_button_tag(:type, "spending", true) %> <%= link_to "Spending", render_spending_path, remote: true, class: 'pill-link spending px-2 m-1', id: 'type_spending' %>
-                <%= radio_button_tag(:type, "transfer", false) %> <%= link_to "Transfer", render_transfer_path, remote: true, class: 'pill-link transfer px-2 mr-auto m-1', id: 'type_transfer' %>
+                <%= link_to "Income", render_income_path, remote: true, class: 'pill-link income px-2 ml-auto m-1', id: 'type_income' %>
+                <%= link_to "Spending", render_spending_path, remote: true, class: 'pill-link spending px-2 m-1', id: 'type_spending' %>
+                <%= link_to "Transfer", render_transfer_path, remote: true, class: 'pill-link transfer px-2 mr-auto m-1', id: 'type_transfer' %>
               </div>
             </div>
           </div>     
