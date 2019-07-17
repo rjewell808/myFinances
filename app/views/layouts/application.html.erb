@@ -11,6 +11,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">myFinances</a>
+      <button class="ml-auto btn btn-outline-success" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,7 +27,6 @@
             <a class="nav-link" href="#">Transfers</a>
           </li>
         </ul>
-        <button class="ml-auto btn btn-outline-success" data-toggle="modal" data-target="#loggerModal">Log Transaction</button>
       </div>
     </nav>
     <div class="container-fluid">
@@ -46,6 +46,7 @@
       </div>
       <div class="modal-body">
         <%= form_tag '/transaction/', :remote => true, :method => "post", :class => "form-group transaction-form" do %>
+        <%= hidden_field_tag "page_type", params[:page_type]%>
           <div class="row">
             <div class="col">
               <div class="row w-100 mx-0" id="type-selection">

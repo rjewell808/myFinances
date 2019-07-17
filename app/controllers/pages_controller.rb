@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def income
+    params[:page_type] = "income"
   	@categories = {
   		"Automotive"=>[],
   		"Food"=>["Break Food", "Grocery", "Movies", "Restaurant"],
@@ -48,6 +49,7 @@ class PagesController < ApplicationController
   end
 
   def spending
+    params[:page_type] = "spending"
     @spending_total = 0
     @cash_total = 0
     @check_total = 0

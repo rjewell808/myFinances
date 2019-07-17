@@ -21,8 +21,9 @@
 	border-radius: 15px;
 	background-color: transparent;
 	cursor: pointer;
+	color: gray;
 	font-weight: 500;
-	border-width: 2px;
+	border-width: 1px;
 	border-style: solid;
 }
 
@@ -79,4 +80,10 @@
 		color: white;
 		background-color: #ea377a;
 	}
+}
+
+.btn-link {
+	background: transparent;
+	border: none;
+	outline: none;
 }

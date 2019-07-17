@@ -1,3 +1,3 @@
 $('.transaction-form')[0].reset()
-$('div#trans_table').html('<%= j render partial: "table_view", locals: { type: params[:type] } %>');
+$('div#trans_table').html('<%= j render partial: "table_view", locals: { page_type: params[:page_type] } %>');
 $('div#specific_form').html('')

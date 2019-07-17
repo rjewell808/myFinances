@@ -1,13 +1,14 @@
-<% if type == "income" %>
+<% if page_type == "income" %>
   <%
     all_trans = Transaction.where(input_type: "income").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
   %>
 
   <div class="row mx-0 headings">
-    <div class="col">Type</div>
+    <div class="col-2">Type</div>
     <div class="col">Source</div>
-    <div class="col">Amount</div>
-    <div class="col">Date</div>
+    <div class="col-2">Amount</div>
+    <div class="col-2">Date</div>
+    <div class="col-2">Delete</div>
   </div>
   <% all_trans.each do |trans| %>
     <%
@@ -20,13 +21,14 @@
       end
     %>
     <div class="row mx-0 <%=theme%> transaction">
-        <div class="col"><%=trans.amount_type%></div>
+        <div class="col-2"><%=trans.amount_type%></div>
         <div class="col"><%=trans.desc%></div>
-        <div class="col">$<%=sprintf('%.2f', trans.amount)%></div>
-        <div class="col"><%=trans.date.strftime("%m/%d/%Y")%></div>
+        <div class="col-2">$<%=sprintf('%.2f', trans.amount)%></div>
+        <div class="col-2"><%=trans.date.strftime("%m/%d/%Y")%></div>
+        <div class="col-2"><%= button_to "Del", "/transaction/" + trans.id.to_s, method: :delete, params: { page_type: page_type }, remote: true, class: "btn-link"%></div>
     </div>
   <% end %>
-<% elsif type == "spending" %>
+<% elsif page_type == "spending" %>
   <%
     all_trans = Transaction.where(input_type: "spending").sort_by{|t| [t.date ? 1 : 0, t.date] }.reverse
   %>
@@ -37,7 +39,7 @@
     <div class="col-2">Type</div>
     <div class="col-2">Date</div>
     <div class="col-3">Category</div>
-    <div class="col">Delete</div>
+    <div class="col-2">Delete</div>
   </div>
   <% all_trans.each do |trans| %>
     <%
@@ -55,7 +57,7 @@
         <div class="col-2"><%=trans.amount_type%></div>
         <div class="col-2"><%=trans.date.strftime("%m/%d/%Y")%></div>
         <div class="col-3"><%=trans.category%></div>
-        <div class="col-auto pl-0 pr-1 ml-auto"><%= button_to "Del", "/transaction/" + trans.id.to_s, method: :delete, params: { type: type }, remote: true %></div>
+        <div class="col-2"><%= button_to "Del", "/transaction/" + trans.id.to_s, method: :delete, params: { page_type: page_type }, remote: true, class: "btn-link" %></div>
     </div>
   <% end %>
 <% end %>
