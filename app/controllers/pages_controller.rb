@@ -71,6 +71,7 @@ class PagesController < ApplicationController
     end
 
     @spending_total = @check_total + @cash_total + @savings_total
+    @spending_month = Transaction.where(input_type: "spending", date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:amount)
   end
 
   def render_income
