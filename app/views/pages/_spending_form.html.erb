@@ -13,6 +13,7 @@
       "Other"=>["Subscription"]
     }
 %>
+<%= hidden_field_tag "trans_type", "spending" %>
 <div class="col-12 px-0">
   <h5 class="mt-2">Description:</h5>
   <%= text_field_tag 'desc', "", placeholder: "Enter a description", class: "form-control p-1", autocomplete: "off" %>

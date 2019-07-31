@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc: MyString
+  cash: 9.99
+  savings: 9.99
+  checking: 9.99
+  date: 2019-07-31
+
+two:
+  desc: MyString
+  cash: 9.99
+  savings: 9.99
+  checking: 9.99
+  date: 2019-07-31

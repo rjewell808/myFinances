@@ -1,3 +1,4 @@
+<%= hidden_field_tag "trans_type", "transfer" %>
 <div class="col-12 my-auto px-0">
 	<h5 class="mt-2">Amount:</h5>
   <div class="row mt-1 mx-0">
@@ -9,7 +10,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">$</div>
         </div>
-        <%= text_field_tag 'amount', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
+        <%= text_field_tag 'amount_checking', "", placeholder: "0.00", class: "form-control p-1", autocomplete: "off" %>
       </div>
     </div>
   </div>

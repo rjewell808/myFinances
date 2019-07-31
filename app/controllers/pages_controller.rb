@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
+  def transfers
+    @transfers = Transfer.all.sort_by{|t| [t.date ? 1 : 0, t.date]}.reverse
+  end
+
   def income
     params[:page_type] = "income"
   	@categories = {
@@ -21,9 +25,9 @@ class PagesController < ApplicationController
     @check_spent_total = 0
     @savings_spent_total = 0
 
-    @check_total = 0
-    @cash_total = 0
-    @savings_total = 0
+    @check_total = Transfer.where.not(checking: [0, nil]).sum(:checking)
+    @cash_total = Transfer.where.not(cash: [0, nil]).sum(:cash)
+    @savings_total = Transfer.where.not(savings: [0, nil]).sum(:savings)
 
     @trans.each do |t|
       if t.amount_type == "cash"
@@ -87,6 +91,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def del_transfer
+    Transfer.destroy(params[:id])
+    redirect_back(fallback_location: "/transfers/")
+  end
+
   def del_transaction
     Transaction.destroy(params[:id])
   end
@@ -95,9 +104,23 @@ class PagesController < ApplicationController
   	amount = params[:amount].to_f
   	amount_type = "checking"
 
-  	if params[:type] == "income"
+    if params[:trans_type] == "transfer"
+      Transfer.create(
+        desc: params[:desc].to_s,
+        date: DateTime.strptime(params[:played_at],"%m/%d/%Y"),
+        checking: params[:amount_checking],
+        cash: params[:amount_cash],
+        savings: params[:amount_savings]
+      )
+
+      respond_to do |format|
+        format.js
+      end
+    end
+
+  	if params[:trans_type] == "income"
   		amount_type = params[:amount_type]
-  	elsif params[:type] == "spending"
+  	elsif params[:trans_type] == "spending"
   		if !params[:amount_cash].blank?
   			amount = params[:amount_cash]
   			amount_type = "cash"
@@ -114,7 +137,7 @@ class PagesController < ApplicationController
     end
   	
   	Transaction.create(
-  		input_type: params[:type].to_s,
+  		input_type: params[:trans_type].to_s,
   		desc: params[:desc].to_s,
   		amount: amount,
   		date: DateTime.strptime(params[:played_at],"%m/%d/%Y"),

@@ -1,0 +1,29 @@
+<div class="row mx-0">
+  <div class="col px-0">
+    <div class="row mx-0 headings">
+    <div class="col">Desc</div>
+    <div class="col-1">Checking</div>
+    <div class="col-1">Cash</div>
+    <div class="col-1">Savings</div>
+    <div class="col-2">Date</div>
+    <div class="col-2">Delete</div>
+  </div>
+  <% @transfers.each do |trans| %>
+    <%
+      checking = trans.checking.nil? ? 0 : trans.checking
+      cash = trans.cash.nil? ? 0 : trans.cash
+      savings = trans.savings.nil? ? 0 : trans.savings
+    %>
+    <div class="row mx-0 transaction">
+        <div class="col my-auto">
+          <%=trans.desc%>
+        </div>
+        <div class="col-1 my-auto">$<%=sprintf('%.2f', checking)%></div>
+        <div class="col-1 my-auto">$<%=sprintf('%.2f', cash)%></div>
+        <div class="col-1 my-auto">$<%=sprintf('%.2f', savings)%></div>
+        <div class="col-2 my-auto"><%=trans.date.strftime("%m/%d/%Y")%></div>
+        <div class="col-2 my-auto"><%= button_to "Del", "/transfer/" + trans.id.to_s, method: :delete, remote: true, class: "btn-link" %></div>
+    </div>
+  <% end %>
+  </div>
+</div>
